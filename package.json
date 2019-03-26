@@ -1,8 +1,15 @@
 {
   "dependencies": {
     "bcrypt": "^3.0.5",
+    "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.4.19"
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.19",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }

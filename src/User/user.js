@@ -1,10 +1,14 @@
-type Query {
-    info: String!,
-    users: [User!]!
+module.exports = {
+  typeDef:
+
+`
+extend type Query {
+    allUsers(limit: Int, skip: Int): [User!]!
 }
 
-type Mutation {
-    signup(email: String!, name: String!, password: String!): AuthPayload
+
+extend type Mutation {
+    signup(email: String!, name: String!, password: String!, role: String): AuthPayload
     login(email: String!, password: String!): AuthPayload
     update(email: String, name: String): User
 }
@@ -19,4 +23,8 @@ type User {
     name: String
     email: String
     token: String
+    role: String
+}
+`
+
 }
