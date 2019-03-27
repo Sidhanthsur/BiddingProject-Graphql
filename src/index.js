@@ -1,11 +1,12 @@
 const { GraphQLServer } = require('graphql-yoga')
 var { Mutation, Query } = require('./resolvers/')
 var {Mutation: UserMutation, Query: UserQuery} = require('./User/Resolvers')
-var { Mutation: ProjectMutation, Query: ProjectQuery } = require('./Project/Resolvers')
+var { Mutation: ProjectMutation, Query: ProjectQuery, Project: ProjectResolver } = require('./Project/Resolvers')
 const db = require('./Config/database')
 var { merge } = require('lodash')
 var { schema } = require('./schema.js')
 var { typeDef: userSchema } = require('./User/user.js')
+var { typeDef: projectSchema } = require('./Project/project')
 // const resolvers = {
 //   Query,
 //   Mutation
@@ -22,13 +23,14 @@ const resolvers = merge(
   ProjectQuery,
   Mutation,
   UserMutation,
-  ProjectMutation
+  ProjectMutation,
+  ProjectResolver
 )
 console.log(resolvers)
 // console.log(['./src/schema.graphql', './src/User/user.graphql'])
 
 const server = new GraphQLServer({
-  typeDefs: [userSchema, schema],
+  typeDefs: [userSchema, schema, projectSchema],
   resolvers,
   context: request => {
     return {

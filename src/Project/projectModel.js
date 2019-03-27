@@ -6,10 +6,12 @@ var ProjectSchema = new Schema({
     type: Number
   },
   address: {
-
+    type: String
   },
   postedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
 })
+
+module.exports = mongoose.model('Project', ProjectSchema)
