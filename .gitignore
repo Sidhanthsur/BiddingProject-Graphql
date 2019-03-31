@@ -89,6 +89,6 @@ typings/
 .dynamodb/
 
 # Database creds
-src/Config/
+src/Config/database.js
 
 # End of https://www.gitignore.io/api/node
