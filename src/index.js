@@ -1,5 +1,5 @@
 const { GraphQLServer } = require('graphql-yoga')
-var { Mutation, Query } = require('./resolvers/')
+var { Mutation, Query, Bid, Subscription } = require('./resolvers/')
 var {Mutation: UserMutation, Query: UserQuery} = require('./User/Resolvers')
 var { Mutation: ProjectMutation, Query: ProjectQuery, Project: ProjectResolver } = require('./Project/Resolvers')
 const db = require('./Config/database')
@@ -24,7 +24,9 @@ const resolvers = merge(
   Mutation,
   UserMutation,
   ProjectMutation,
-  ProjectResolver
+  ProjectResolver,
+  Bid,
+  Subscription
 )
 console.log(resolvers)
 // console.log(['./src/schema.graphql', './src/User/user.graphql'])

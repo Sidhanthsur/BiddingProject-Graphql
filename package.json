@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^3.0.5",
+    "graphql-subscriptions": "^1.0.0",
     "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
     "jsonwebtoken": "^8.5.1",
@@ -9,7 +10,10 @@
     "webpack": "^4.29.6"
   },
   "devDependencies": {
+    "babel-plugin-relay": "^3.0.0",
     "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "graphql": "^14.2.0",
+    "relay-compiler": "^3.0.0"
   }
 }

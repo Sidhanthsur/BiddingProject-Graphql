@@ -3,7 +3,8 @@ module.exports = {
 
   `
   extend type Mutation {
-      createProject(area: Int!, address: String!): Project!
+      createProject(area: Int!, address: String!, budget: Int!): Project!
+      getProject(id: ID!): Project
   }
 
 
@@ -12,6 +13,8 @@ module.exports = {
       area: Int!
       address: String!
       postedBy: User
+      budget: Int!
+      bidHistory: Bid
   }
   `
 

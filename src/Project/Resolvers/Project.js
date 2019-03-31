@@ -1,5 +1,6 @@
 var User = require('../../User/userModel')
 var Project = require('../projectModel')
+var Bid = require('../../models/bid')
 
 async function postedBy (parent, args, context) {
   console.log(parent)
@@ -9,6 +10,11 @@ async function postedBy (parent, args, context) {
   return object
 }
 
+async function bidHistory (parent, args, context) {
+  var bid = await Bid.findById(parent.bid)
+  return bid
+}
 module.exports = {
-  postedBy
+  postedBy,
+  bidHistory
 }

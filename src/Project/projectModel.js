@@ -11,6 +11,14 @@ var ProjectSchema = new Schema({
   postedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  budget: {
+    type: Number,
+    default: 0
+  },
+  bid: {
+    type: Schema.Types.ObjectId,
+    ref: 'Bid'
   }
 })
 

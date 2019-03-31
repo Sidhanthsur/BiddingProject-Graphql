@@ -1,70 +1,31 @@
-// var User = require('../models/user')
-// const bcrypt = require('bcrypt')
-// const saltRounds = 10
-// const salt = 'skajndkjwand'
-// const jwt = require('jsonwebtoken')
-// const { getUser } = require('../middleware/userAuthenticate')
+var Bid = require('../models/bid')
 
-// async function signup (parent, args, context, info) {
-//   const password = await bcrypt.hash(args.password, saltRounds)
-
-//   const userObj = new User({
-//     name: args.name,
-//     email: args.email,
-//     role: 'user',
-//     password
-//   })
-//   const user = await userObj.save()
-//   console.log('user id => ', user._id)
-//   const token = await jwt.sign({
-//     id: user._id,
-//     role: 'user'
-//   }, salt)
-//   return {
-//     token,
-//     user
-//   }
-// }
-
-// async function login (parent, args, context, info) {
-//   const user = await User.findOne({ email: args.email })
-//   if (!user) {
-//     throw new Error('No such user')
-//   }
-//   const isPasswordCorrect = await bcrypt.compare(args.password, user.password)
-//   if (!isPasswordCorrect) {
-//     throw new Error('Password is incorrect')
-//   }
-
-//   const token = await jwt.sign({
-//     id: user._id,
-//     role: user.role
-//   }, salt)
-//   return {
-//     token,
-//     user
-//   }
-// }
-
-// async function update (parent, args, context, info) {
-//   const userId = await getUser(context)
-//   const user = await User.findById(userId)
-//   user.email = args.email ? args.email : user.email
-//   user.name = args.name ? args.name : user.name
-//   await user.save()
-//   return user
-// }
-
-// module.exports = {
-//   signup,
-//   login,
-//   update
-// }
+var { getUser } = require('../middleware/userAuthenticate')
+var { pubsub } = require('../Config/PubsubConfig')
 
 function hello () {
   return 'Hello'
 }
 
+async function bidForProject (parent, args, context, info) {
+  const userId = getUser(context)
+  var bid = await Bid.findOne({
+    forProject: args.for
+  })
+  console.log(bid)
+  if (args.placedFor > bid.highest) {
+    bid.highest = args.placedFor
+    bid.by = userId
+  } else {
+    throw new Error('Bid is lower than current value')
+  }
+
+  var obj = await bid.save()
+  pubsub.publish('BID_DONE', {bidDone: obj})
+  return obj
+}
+
 module.exports = {
-  hello
+  hello,
+  bidForProject
 }
