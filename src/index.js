@@ -28,7 +28,7 @@ const resolvers = merge(
   Bid,
   Subscription
 )
-console.log(resolvers)
+// console.log(resolvers)
 // console.log(['./src/schema.graphql', './src/User/user.graphql'])
 
 const server = new GraphQLServer({
