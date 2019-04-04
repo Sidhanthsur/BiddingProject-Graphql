@@ -7,6 +7,24 @@ function hello () {
   return 'Hello'
 }
 
+// async function bidForProject (parent, args, context, info) {
+//   const userId = getUser(context)
+//   var bid = await Bid.findOne({
+//     forProject: args.for
+//   })
+//   console.log(bid)
+//   if (args.placedFor > bid.highest) {
+//     bid.highest = args.placedFor
+//     bid.by = userId
+//   } else {
+//     throw new Error('Bid is lower than current value')
+//   }
+
+//   var obj = await bid.save()
+//
+//   return obj
+// }
+
 async function bidForProject (parent, args, context, info) {
   const userId = getUser(context)
   var bid = await Bid.findOneAndUpdate({
@@ -20,6 +38,7 @@ async function bidForProject (parent, args, context, info) {
   }
   , {new: true})
   if (!bid) { throw new Error('Your bid must be higher than the current bid') }
+  pubsub.publish('BID_DONE', {bidDone: bid})
   return bid
 }
 
