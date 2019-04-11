@@ -3,6 +3,7 @@ module.exports =
   schema: `
     type Query {
         info: String!
+        getBidsForProject(for: String!): [Bid!]!
     }
     
     type Mutation {
