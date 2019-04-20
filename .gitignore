@@ -88,7 +88,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# Database creds
-src/Config/
+# db creds
+src/Config/localaddress.js
 
 # End of https://www.gitignore.io/api/node
