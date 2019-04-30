@@ -2,6 +2,10 @@ module.exports = {
   typeDef:
 
   `
+
+  extend type Query {
+    getProjects: [Project!]!
+  }
   extend type Mutation {
       createProject(area: Int!, address: String!, budget: Int!): Project!
       getProject(id: ID!): Project

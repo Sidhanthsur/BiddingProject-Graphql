@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 const fs = require('fs')
 var add = ''
+
 try {
-  if (fs.existsSync('./localaddress.js')) {
-    var {value} = require('./localaddress')
-    add = value
-  }
+  var {value} = require('./localaddress.js')
+  console.log('hawkhd')
+  console.log(value)
+  add = value
 } catch (err) {
   console.error(err)
 }

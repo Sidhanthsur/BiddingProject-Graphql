@@ -3,9 +3,9 @@ var Project = require('../projectModel')
 var Bid = require('../../models/bid')
 
 async function postedBy (parent, args, context) {
-  console.log(parent)
-  // const {postedBy} = await Project.findById(parent.id)
-  console.log(parent.postedBy)
+  // console.log(parent)
+  // // const {postedBy} = await Project.findById(parent.id)
+  // console.log(parent.postedBy)
   var object = await User.findById(parent.postedBy)
   return object
 }
